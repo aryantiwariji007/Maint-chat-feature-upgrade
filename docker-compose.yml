@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./backend
+    # Ollama's systemd service on this host binds only to 127.0.0.1:11434
+    # (not 0.0.0.0), so bridge networking + host.docker.internal can't reach
+    # it. Host networking puts the container directly on the host's network
+    # namespace, so OLLAMA_BASE_URL=http://localhost:11434/v1 (from .env)
+    # resolves correctly without changing Ollama's bind address.
+    network_mode: host
+    env_file:
+      - .env
+    volumes:
+      - ./backend/data:/app/data
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
