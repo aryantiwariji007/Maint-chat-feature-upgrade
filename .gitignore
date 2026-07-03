@@ -6,3 +6,5 @@ backend/__pycache__/
 node_modules/
 frontend/dist/
 .venv/
+.claude/
+CLAUDE.md
