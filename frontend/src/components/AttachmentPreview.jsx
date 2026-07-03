@@ -1,4 +1,4 @@
-const KIND_LABEL = { image: "Image", csv: "CSV", xlsx: "XLSX" };
+const KIND_LABEL = { image: "Image" };
 
 export default function AttachmentPreview({ attachment, onRemove }) {
   const { original_filename, kind, extraction_status, extraction_error, extracted_text } =

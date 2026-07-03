@@ -26,8 +26,6 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:5173,http://localhost:8080"
 
     max_image_upload_mb: int = 15
-    max_table_upload_mb: int = 5
-    max_table_rows: int = 500
 
     @property
     def cors_origins_list(self) -> list[str]:

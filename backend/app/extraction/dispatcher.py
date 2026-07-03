@@ -1,22 +1,18 @@
 from pathlib import Path
 
-from app.extraction import table_extractor, vlm_extractor
+from app.extraction import vlm_extractor
 
 KIND_BY_EXTENSION = {
     ".jpg": "image",
     ".jpeg": "image",
     ".png": "image",
     ".webp": "image",
-    ".csv": "csv",
-    ".xlsx": "xlsx",
 }
 
 MIME_BY_KIND_PREFIX = {
     "image/jpeg": "image",
     "image/png": "image",
     "image/webp": "image",
-    "text/csv": "csv",
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
 }
 
 
@@ -30,8 +26,4 @@ def classify(filename: str, mime_type: str) -> str | None:
 def extract(path: Path, kind: str, mime_type: str):
     if kind == "image":
         return vlm_extractor.extract_image(path, mime_type)
-    if kind == "csv":
-        return table_extractor.extract_csv(path)
-    if kind == "xlsx":
-        return table_extractor.extract_xlsx(path)
     raise ValueError(f"Unsupported kind: {kind}")

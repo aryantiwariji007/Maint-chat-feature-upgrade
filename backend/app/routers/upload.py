@@ -10,9 +10,6 @@ from app.storage.files import save_upload
 
 router = APIRouter(prefix="/api/upload", tags=["upload"])
 
-IMAGE_KINDS = {"image"}
-TABLE_KINDS = {"csv", "xlsx"}
-
 
 @router.post("", response_model=UploadResponse)
 async def upload_file(
@@ -30,14 +27,14 @@ async def upload_file(
     if kind is None:
         raise HTTPException(
             status_code=400,
-            detail="Unsupported file type. Allowed: jpg/png/webp images, csv, xlsx.",
+            detail="Unsupported file type. Allowed: jpg, png, webp images.",
         )
 
     size_mb = len(content) / (1024 * 1024)
-    limit_mb = settings.max_image_upload_mb if kind in IMAGE_KINDS else settings.max_table_upload_mb
-    if size_mb > limit_mb:
+    if size_mb > settings.max_image_upload_mb:
         raise HTTPException(
-            status_code=400, detail=f"File exceeds {limit_mb}MB limit for {kind} uploads."
+            status_code=400,
+            detail=f"File exceeds {settings.max_image_upload_mb}MB limit for {kind} uploads.",
         )
 
     path = save_upload(file.filename or "upload", content)

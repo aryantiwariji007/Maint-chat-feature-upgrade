@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const ACCEPTED = ".jpg,.jpeg,.png,.webp,.csv,.xlsx";
+const ACCEPTED = ".jpg,.jpeg,.png,.webp";
 
 export default function FileUploadButton({ onSelect, disabled }) {
   const inputRef = useRef(null);
@@ -25,7 +25,7 @@ export default function FileUploadButton({ onSelect, disabled }) {
         className="upload-button"
         disabled={disabled}
         onClick={() => inputRef.current?.click()}
-        title="Attach image, CSV, or XLSX"
+        title="Attach image"
       >
         📎
       </button>

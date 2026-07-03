@@ -1,4 +1,5 @@
 import base64
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -82,6 +83,20 @@ def extract_image(path: Path, mime_type: str) -> ExtractionResult:
             data = response.json()
 
         text = data["choices"][0]["message"]["content"].strip()
+
+        # Model doesn't always match the prompt's exact casing (e.g. "No_TEXT_DETECTED"),
+        # so compare with underscores/case normalized out rather than an exact match.
+        if re.sub(r"[^A-Z]", "", text.upper()) == "NOTEXTDETECTED":
+            return ExtractionResult(
+                status="failed",
+                error=(
+                    "No readable text detected in this image. If it contains dense or "
+                    "small text (e.g. technical drawings, tables with many rows), try "
+                    "cropping it into smaller sections and uploading each separately."
+                ),
+                method=method,
+            )
+
         return ExtractionResult(status="success", text=text, method=method)
 
     except httpx.ConnectError:

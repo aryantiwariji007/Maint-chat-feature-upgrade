@@ -18,7 +18,7 @@ class LLMResult:
 
 SYSTEM_PROMPT = (
     "You are a helpful assistant embedded in a chat product. The user may attach "
-    "extracted text from images, scanned tables/documents, or spreadsheet files. "
+    "extracted text from images, including photographed or scanned tables/documents. "
     "This extracted text may contain OCR or vision-model errors. If data looks "
     "inconsistent or a table seems malformed, note that uncertainty rather than "
     "presenting it as ground truth. Always answer using the attached context when "

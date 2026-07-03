@@ -11,7 +11,7 @@ export default function MessageList({ messages }) {
   if (messages.length === 0) {
     return (
       <div className="message-list message-list-empty">
-        <p>Start a conversation. Attach an image or table for context.</p>
+        <p>Start a conversation. Attach an image for context.</p>
       </div>
     );
   }

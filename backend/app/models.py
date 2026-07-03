@@ -36,7 +36,7 @@ class Attachment(SQLModel, table=True):
     session_id: str = Field(foreign_key="chatsession.id", index=True)
     original_filename: str
     mime_type: str
-    kind: str  # "image" | "csv" | "xlsx"
+    kind: str  # "image"
     stored_path: str
     extraction_status: str = Field(default="pending")  # pending|success|failed
     extraction_error: str | None = Field(default=None)
