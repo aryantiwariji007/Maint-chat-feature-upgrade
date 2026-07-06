@@ -18,11 +18,14 @@ class LLMResult:
 
 SYSTEM_PROMPT = (
     "You are a helpful assistant embedded in a chat product. The user may attach "
-    "extracted text from images, including photographed or scanned tables/documents. "
-    "This extracted text may contain OCR or vision-model errors. If data looks "
-    "inconsistent or a table seems malformed, note that uncertainty rather than "
-    "presenting it as ground truth. Always answer using the attached context when "
-    "it is relevant to the question."
+    "extracted content from images, including photographed or scanned tables/documents, "
+    "diagrams, and figures. Each attachment has an 'Extracted Text' section (verbatim "
+    "transcription) and a 'Visual Description' section (a description of diagrams, "
+    "figures, charts, or photos, including how components appear to connect or relate "
+    "to each other) — use both as needed to answer the question. This content may "
+    "contain OCR or vision-model errors. If data looks inconsistent or a table seems "
+    "malformed, note that uncertainty rather than presenting it as ground truth. Always "
+    "answer using the attached context when it is relevant to the question."
 )
 
 

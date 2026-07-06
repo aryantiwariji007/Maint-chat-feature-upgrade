@@ -18,8 +18,9 @@ class Settings(BaseSettings):
     anthropic_model: str = "claude-sonnet-4-6"
     gemini_model: str = "gemini-3.5-flash"
 
-    ollama_base_url: str = "http://localhost:11434/v1"
+    ollama_base_url: str = "http://localhost:11434"
     ollama_vlm_model: str = "qwen3-vl:4b-instruct"
+    ollama_num_ctx: int = 4096
 
     default_provider: str = "gemini"
 
